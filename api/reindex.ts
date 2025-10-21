@@ -1,19 +1,14 @@
 export default async function handler(req: any, res: any) {
-  try {
-    const url = new URL(req.url ?? `http://x`);
-    const secret = (url.searchParams.get('secret') || req.query?.secret) as string;
-    const clinicId = (url.searchParams.get('clinicId') || req.query?.clinicId || 'CLINIC_DEMO') as string;
+  if (req.method !== "GET") return res.status(405).json({ error: "Method not allowed" });
 
-    if (!process.env.REINDEX_SECRET) {
-      return res.status(500).json({ ok:false, error:'REINDEX_SECRET missing' });
-    }
-    if (secret !== process.env.REINDEX_SECRET) {
-      return res.status(401).json({ ok:false, error:'invalid secret' });
-    }
+  const secret = String(req.query.secret || "");
+  const expected = process.env.REINDEX_SECRET || "";
+  if (!expected) return res.status(500).json({ error: "Missing REINDEX_SECRET env var" });
+  if (secret !== expected) return res.status(401).json({ error: "Unauthorized" });
 
-    // Más adelante: refrescar embeddings. Por ahora “no-op” seguro.
-    return res.status(200).json({ ok:true, clinicId, indexed:0 });
-  } catch (e:any) {
-    return res.status(500).json({ ok:false, error:String(e?.message||e) });
-  }
+  const clinicId = String(req.query.clinicId || req.query.clinicid || req.query.cid || "CLINIC_DEMO");
+
+  // 👉 Acá iría tu lógica real de indexación (leer Supabase/Sheets y poblar el índice).
+  // De momento, devolvemos OK para probar el endpoint.
+  return res.status(200).json({ ok: true, clinicId, indexed: 0, note: "Reindex placeholder" });
 }
