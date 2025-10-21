@@ -1,7 +1,12 @@
 {
+  "name": "ai-for-clinic",
+  "version": "0.1.0",
   "private": true,
-  "type": "module",
-  "dependencies": {
-    "@supabase/supabase-js": "^2.46.0"
+  "scripts": {
+    "build": "echo \"Vercel builds Serverless Functions automatically\"",
+    "dev": "vercel dev"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
   }
 }
