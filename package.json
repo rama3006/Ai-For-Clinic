@@ -10,3 +10,6 @@
     "typescript": "^5.4.0"
   }
 }
+"scripts": {
+  "build": "tsc -p tsconfig.build.json"
+}
