@@ -2,14 +2,11 @@
   "name": "ai-for-clinic",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "build": "echo \"Vercel builds Serverless Functions automatically\"",
-    "dev": "vercel dev"
-  },
   "devDependencies": {
     "typescript": "^5.4.0"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo \"No local build: Vercel compila /api/*.ts\""
   }
-}
-"scripts": {
-  "build": "tsc -p tsconfig.build.json"
 }
