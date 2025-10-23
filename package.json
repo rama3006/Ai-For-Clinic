@@ -1,5 +1,14 @@
 {
-  "dev": "vercel dev",
-  "build": "echo \"No local build: Vercel compila /api/*.ts\"",
-  "postinstall": "rm -f api/*.js api/*.js.map || true"
+  "name": "ai-for-clinic",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/node": "^20.11.30"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo \"No local build: Vercel compila /api/*.ts\"",
+    "postinstall": "rm -f api/*.js api/*.js.map || true"
+  }
 }
